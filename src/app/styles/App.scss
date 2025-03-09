@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+$black: #101014;
+$white: #FAFAFA;
+$blue: #3467FE;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: $black;
+  font-family: "Jost", sans-serif;
+  color: $white;
+  scroll-behavior: smooth;
+}
+
+button{
+  font-family: "Jost", sans-serif;
+  color: $white;
+  cursor: pointer;
+}
+
+input{
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $white;
+}
+
+input[type="datetime-local"] {
+  -webkit-appearance: none; 
+  -moz-appearance: textfield; 
+  appearance: none; 
+}
+
+select{
+  background-color: transparent; 
+  border: none;   
+  outline: none;
+  color: $white;
+  appearance: none; // убираем стили браузера
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select:focus{
+  border-bottom: 1px solid #FAFAFA;
+}
+
+option{
+  background-color: transparent;
+  color: #101014;
+}
+
+.title{
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+.container {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-4 {
+  width: 33.3%;
+  // padding: 0 15px;
+}
+
+.col-6 {
+  width: 50%;
+  // padding: 0 15px;
+}
+
+.col-3 {
+  width: 25%;
+  // padding: 0 15px;
+}
+
+ul li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

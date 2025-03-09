@@ -1,0 +1,39 @@
+.card{
+    width: 19%;
+    margin-bottom: 50px;
+
+    .order{
+        gap: 44px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        width: 100%;
+
+        &__number{
+            background-color: #3467FE;
+            padding: 8px 20px;
+            font-size: 24px;
+            border-radius: 10px;
+            width: 20%;
+        }
+
+        &__line{
+            width: 60%;
+            background-color: #f1f1f1;
+            height: 2px;
+        }
+    }
+
+    .description{
+        &_title{
+            margin-bottom: 16px;
+            font-size: 26px;
+            line-height: 32px;
+        }
+
+        &_text{
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
+}

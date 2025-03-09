@@ -1,0 +1,57 @@
+.main__header{
+    position: absolute;
+    z-index: 1;
+    width: 90%;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%);
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo{
+        width: 95px;
+        height: 46px;
+        color: black;
+    }
+
+    &__links{
+        gap: 56px;
+        padding: 14px 26px;
+        border-radius: 86px;
+        font-size: 20px;
+        font-weight: 400;
+        background: linear-gradient(90deg, #00000033 70%, #00000066 100%);
+        backdrop-filter: blur(40px);
+
+
+        li{
+            cursor: pointer;
+        }
+    }
+    
+    &__language{
+        padding: 16.5px 26px;
+        background: linear-gradient(90deg, #00000033 0%, #00000066 100%);
+        border-radius: 26px;
+        gap: 6px;
+
+        .dropdown {
+            margin-top: 20px;
+            overflow: hidden; 
+        }
+
+        img{
+            width: 30px;
+            height: 20px;
+        }
+    }
+
+    &__contacts{
+        align-items: center;
+        gap: 16px;
+        background-color: #3467FE;
+        padding: 12px 40px;
+        border-radius: 16px;
+        border: none;
+    }
+}

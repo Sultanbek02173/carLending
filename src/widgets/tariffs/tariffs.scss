@@ -1,0 +1,30 @@
+.tariff__section{
+    margin-top: 100px;
+
+    &__navigate{
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 60px;
+
+        &__catalog{
+            gap: 75px;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 50px;
+    
+            p{
+                padding: 0 31px;
+                cursor: pointer;
+            }
+        }
+    
+        .active{
+            border-bottom: 1px solid #3467FE; 
+        }
+    }
+
+    &__cars{
+        justify-content: space-between;
+        gap: 32px;
+    }
+}

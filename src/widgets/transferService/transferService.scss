@@ -1,0 +1,41 @@
+.about__section{
+    margin-top: 85px;
+    width: 100%;
+    gap: 32px;
+
+    &__img{
+        width: 27%;
+
+        img{
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__texts{
+        width: 70%;
+        position: relative;
+
+        &_title{
+            font-size: 40px;
+            font-weight: 500;
+            margin-top: 26px;
+            position: absolute;
+            left: -14%;
+        }
+
+        &_paragraph:nth-child(2){
+            margin-top: 135px;
+        }
+
+        &_paragraph{
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
+        &_paragraph:last-child{
+            margin-bottom: 0;
+        }
+    }
+}
