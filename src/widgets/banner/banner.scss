@@ -37,6 +37,36 @@
         &__item{
             padding: 0 30px;
 
+            .select{
+                position: relative;
+
+                h3{
+                    cursor: pointer;
+                }
+
+                .dropdown {
+                    z-index: 10000;
+                    margin-top: 17px;
+                    overflow: hidden;
+                    position: absolute;
+                    background: #00000066;
+                    backdrop-filter: blur(40px);
+                    top: 20px;
+                    left: -20px;
+                    
+
+                    h3{
+                        margin: 20px;
+                        cursor: pointer;
+                    }
+                    
+                    h3:hover{
+                        color: #3467FE;
+                    }
+        
+                }
+            }
+
             p{
                 color: #727C93;
                 font-size: 18px;

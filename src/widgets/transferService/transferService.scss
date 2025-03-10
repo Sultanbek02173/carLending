@@ -15,12 +15,14 @@
     &__texts{
         width: 70%;
         position: relative;
+        z-index: -2;
 
         &_title{
             font-size: 40px;
             font-weight: 500;
             margin-top: 26px;
             position: absolute;
+            z-index: -1;
             left: -14%;
         }
 

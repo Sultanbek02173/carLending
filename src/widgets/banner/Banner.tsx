@@ -1,6 +1,11 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import './banner.scss';
+import { useState } from 'react';
 
 export const Banner = () => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [selected, setSelected] = useState('Economy');
+
   return (
     <div className='banner__section'>
 
@@ -26,13 +31,40 @@ export const Banner = () => {
         </div>
         <div className='banner__section__order__item line'>
           <p>Tariff</p>
-          <select name="tariff" id="0">
-            <option value="0">Economy</option>
-            <option value="1">Comfort</option>
-            <option value="2">Premium</option>
-            <option value="3">Premium+</option>
-          </select>
+          <div className='select row'>
+            <h3 onClick={() => setIsAnimating(!isAnimating)}>{selected}</h3>
 
+            <AnimatePresence>
+              {isAnimating && (
+                <motion.div
+                  className="dropdown"
+                  initial={{ height: 0 }}
+                  animate={{ height: "auto" }}
+                  exit={{ height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 onClick={() => {
+                    setSelected('Economy')
+                    setIsAnimating(!isAnimating)
+                  }}>Economy</h3>
+                  <h3 onClick={() => {
+                    setSelected('Comfort')
+                    setIsAnimating(!isAnimating)
+                  }}>Comfort</h3>
+                  <h3 onClick={() => {
+                    setSelected('Premium')
+                    setIsAnimating(!isAnimating)
+                  }}>Premium</h3>
+                  <h3 onClick={() => {
+                    setSelected('Premium+')
+                    setIsAnimating(!isAnimating)
+                  }}>Premium+</h3>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          
         </div>
         <div className='banner__section__order__item line '>
           <p>Pick Up</p>
