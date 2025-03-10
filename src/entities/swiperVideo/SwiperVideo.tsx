@@ -3,6 +3,7 @@ import 'swiper/css/pagination';
 import './swiperVideo.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
 import { videoSwiperProps } from '../../types';
 
 export const SwiperVideo = () => {
@@ -35,30 +36,30 @@ export const SwiperVideo = () => {
   ]
   return (
     <div id="review" className="review__section">
-      <h2 className="title">What our costumers say</h2>
+      <h2 className="title">What our customers say</h2>
 
-      <div className='review__section__swiper'>
+      <div className="review__section__swiper">
         <Swiper
           spaceBetween={30}
+          pagination={{ clickable: true, el: '.custom-pagination' }} 
+          modules={[Pagination]} 
           className="mySwiper"
         >
-          {
-            videoSwiper && 
-            videoSwiper.map((swip, inx) => (
-              <SwiperSlide key={inx}>
-                <div className='swiper__item row'>
-                  <div className='swiper__item__video'>
-                    <iframe src={swip.link}></iframe>
-                  </div>
-                  <div className='swiper__item__description'>
-                    <h3>{swip.title}</h3>
-                    <p>{swip.description}</p>
-                  </div>
+          {videoSwiper.map((swip, inx) => (
+            <SwiperSlide key={inx}>
+              <div className="swiper__item row">
+                <div className="swiper__item__video">
+                  <iframe src={swip.link}></iframe>
                 </div>
-              </SwiperSlide>
-            ))
-          }
+                <div className="swiper__item__description">
+                  <h3>{swip.title}</h3>
+                  <p>{swip.description}</p>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
+        <div className="custom-pagination"></div> {/* Здесь будет рендериться кастомная пагинация */}
       </div>
     </div>
   )
