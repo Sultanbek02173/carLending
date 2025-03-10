@@ -1,4 +1,4 @@
-import { SwiperVideo } from '../../entities';
+import { ScrollButton, SwiperVideo } from '../../entities';
 import { Banner, Footer, Header, OurService, Tariffs, TransferService } from '../../widgets';
 import '../styles/App.scss';
 
@@ -12,6 +12,7 @@ function App() {
       <OurService />
       <Tariffs />
       <SwiperVideo />
+      <ScrollButton />
       <Footer />
     </div>
   )

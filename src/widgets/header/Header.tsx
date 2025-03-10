@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export const Header = () => {
 
-  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleToggle = () => {
     setIsAnimating(!isAnimating);
@@ -17,7 +17,7 @@ export const Header = () => {
   return (
     <header className="main__header row">
       <div className="main__header__logo">
-        Transfer <sup>24</sup>
+        <h3>Transfer <sup>24</sup></h3>
       </div>
       
       <ul className="main__header__links row">
@@ -30,7 +30,7 @@ export const Header = () => {
       <div onClick={handleToggle} className="main__header__language">
         <div className='row'>
           <img src={russianFlag} alt="" /> 
-          <IoIosArrowDown size={18} />
+          <IoIosArrowDown size={18} style={isAnimating ? {rotate: '180deg'} : {rotate: '0deg'}} />
         </div>
 
         <AnimatePresence>

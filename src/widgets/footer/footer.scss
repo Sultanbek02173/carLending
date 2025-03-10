@@ -1,0 +1,61 @@
+.main__footer{
+    width: 100%;
+    margin-top: 140px;
+    margin-bottom: 40px;
+    padding: 11px 90px;
+    background-color: #09080D;
+    border: 1px solid #3467FE;
+    border-radius: 62px;
+
+    &__links{
+        margin-top: 56px;
+        margin-bottom: 86px;
+        gap: 66px;
+    }
+
+    &__social{
+        width: 233px;
+        h3{
+            font-family: "Orbitron", sans-serif;
+            font-size: 36px;
+            margin-bottom: 31px;
+
+            sup{
+                font-size: 24px;
+            }
+        }
+
+        p{
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+            margin-bottom: 48px;
+        }
+
+        .social{
+            gap: 25px;
+
+            svg{
+                font-size: 24px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__link{
+        gap: 56px;
+
+        h3{
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 24px;
+        }
+
+        p{
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            margin-top: 20px;
+        }
+    }
+}

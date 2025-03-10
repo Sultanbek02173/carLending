@@ -9,9 +9,20 @@
     align-items: center;
 
     &__logo{
-        width: 95px;
+        width: 228px;
         height: 46px;
         color: black;
+
+        h3{
+            font-family: "Orbitron", sans-serif;
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 36px;
+
+            sup{
+                font-size: 24px;
+            }
+        }
     }
 
     &__links{
@@ -31,13 +42,32 @@
     
     &__language{
         padding: 16.5px 26px;
-        background: linear-gradient(90deg, #00000033 0%, #00000066 100%);
+        background: #00000066;
         border-radius: 26px;
         gap: 6px;
+        position: relative;
+
+        svg{
+            transition: all .3s;
+            margin-left: 6px;
+        }
 
         .dropdown {
-            margin-top: 20px;
-            overflow: hidden; 
+            z-index: -1;
+            margin-top: 17px;
+            overflow: hidden;
+            position: absolute;
+            background: #00000066;
+            width: 100%;
+            top: -17px;
+            left: 0;
+            border-radius: 26px;
+            text-align: center;
+            
+            img{
+                margin: 65px 26px 15px 26px;
+            }
+
         }
 
         img{
