@@ -3,12 +3,21 @@ import russianFlag from '../../shared/imgs/Russia.png';
 import usaFlag from '../../shared/imgs/usa.png';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaPhoneAlt } from 'react-icons/fa';
-import { useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export const Header = () => {
+interface HeaderProps {
+  isOpen: boolean,
+  setIsOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export const Header: FC<HeaderProps> = ({isOpen, setIsOpen}) => {
 
   const [isAnimating, setIsAnimating] = useState(false);
+
+  const handlerModal = () => {
+    setIsOpen(!isOpen);
+  }
 
   const handleToggle = () => {
     setIsAnimating(!isAnimating);
@@ -49,10 +58,11 @@ export const Header = () => {
       </div>
       
 
-      <button className="main__header__contacts row">
+      <button onClick={handlerModal} className="main__header__contacts row">
         <p>Contacts</p> 
         <FaPhoneAlt size={15} />
       </button>
+
     </header>
   )
 }

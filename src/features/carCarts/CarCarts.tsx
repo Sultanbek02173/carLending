@@ -2,7 +2,7 @@ import { FC } from "react";
 import './carCarts.scss';
 
 interface CarCartsProps {
-    id: number;
+    id?: number;
     img: string;
     description: string;
 }

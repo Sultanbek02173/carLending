@@ -1,12 +1,9 @@
 import { ServiceCart } from '../../features';
 import './ourService.scss';
 import arrow from '../../shared/imgs/Vector.png';
+import { Carts } from '../../types';
 
-interface Carts {
-  id: number;
-  title: string;
-  description: string;
-}
+
 
 export const OurService = () => {
 

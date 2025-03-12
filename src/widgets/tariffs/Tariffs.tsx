@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './tariffs.scss';
-import car from '../../shared/imgs/car.png';
 import { CarCarts } from '../../features';
+import car from '../../shared/imgs/car.png';
+import './tariffs.scss';
 
 interface carsProps {
   id: number;
