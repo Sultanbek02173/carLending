@@ -1,9 +1,11 @@
 {
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
   "files": [],
-  "moduleResolution": "node",
-  "esModuleInterop": true,
-  "resolveJsonModule": true,
-  "allowSyntheticDefaultImports": true,
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }

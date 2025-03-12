@@ -38,8 +38,9 @@ export const SwiperVideo = () => {
     <div id="review" className="review__section">
       <h2 className="title">What our customers say</h2>
 
-      <div className="review__section__swiper">
+      <div className="review__section__swiper ">
         <Swiper
+
           spaceBetween={30}
           pagination={{ clickable: true, el: '.custom-pagination' }} 
           modules={[Pagination]} 
