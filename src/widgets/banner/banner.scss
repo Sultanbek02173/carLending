@@ -1,3 +1,5 @@
+@use '@/styles/Constants.scss' as *;
+
 .banner__section{
     margin-top: 40px;
     position: relative;
@@ -5,19 +7,75 @@
     background-image: url('../../shared/imgs/banner.png');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     height: 634px;
+
+    @include lg{
+        height: 540px;
+    }
+
+    @include xl2{
+        height: 440px;
+    }
+
+    @include xl{
+        height: 340px;
+    }
+
+    @include md{
+        height: 316px;
+        background-size: cover;
+    }
+
+    @include sm{
+        height: 560px;
+    }
 
     &__description{
         position: absolute;
         top: 245px;
         padding-left: 36px;
+
+        @include xl2{
+            top: 139px;
+            padding-left: 22px;
+        }
+
+        @include sm{
+            top: 192px;
+            padding-left: 16px;
+
+        }
         
         h1{
             width: 423px;
+            font-size: 48px;
+            font-weight: 500;
+
+            @include xl2{
+                width: 267px;
+                font-size: 30px;
+            }
+
+            @include sm{
+                width: 300px;
+                font-size: 36px;
+            }
         }
         p{
             width: 633px;
+            font-size: 20px;
+            font-weight: 400;
+
+            @include xl2{
+                width: 400px;
+                font-size: 12px;
+            }
+
+            @include sm{
+                width: 290px;
+                font-size: 16px;
+            }
         }
     }
 
@@ -33,15 +91,42 @@
         backdrop-filter: blur(10px);
         padding: 14px 0;
         border-radius: 30px;
+        @include lg{
+            padding: 7px 0;
+        }
+
+        @include sm{
+            padding: 10px 0;
+        }
 
         &__item{
             padding: 0 30px;
+
+            @include lg{
+                padding: 0 13px;
+            }
+
+            @include sm{
+                padding: 0 27px;
+            }
 
             .select{
                 position: relative;
 
                 h3{
                     cursor: pointer;
+                    font-size: 20px;
+                    font-weight: 400;
+
+                    @include lg{
+                        font-size: 10px;
+
+                    }
+
+                    @include sm{
+                        font-size: 16px;
+
+                    }
                 }
 
                 .dropdown {
@@ -72,23 +157,58 @@
                 font-size: 18px;
                 font-weight: 400; 
                 margin-bottom: 4px;
+
+                @include lg{
+                    font-size: 9px;
+                    font-weight: 400; 
+                    margin-bottom: 4px;
+                }
+
+                @include sm{
+                    font-size: 14px;
+                    font-weight: 400; 
+                    margin-bottom: 4px;
+                }
             }
 
             input{
                 width: 113px;
                 font-size: 20px;
-            }
 
-            select{
-                font-size: 20px;
+                @include lg{
+                    width: 63px;
+                    font-size: 10px;
+                }
+
+                @include sm{
+                    width: 113px;
+                    font-size: 20px;
+                }
             }
 
             .date{
                 width: 210px;
+                color: #FAFAFA;
+
+                @include lg{
+                    width: 140px;
+                }
+
+                @include sm{
+                    width: 107px;
+
+                }
             }
 
             input::placeholder{
                 font-size: 20px;
+                @include lg{
+                    font-size: 10px;
+                }
+
+                @include sm{
+                    font-size: 20px;
+                }
             }
 
             input:focus{
@@ -111,9 +231,19 @@
         .order_btn{
             background-color: #3467FE;
             font-size: 18px;
-            border-radius: 16px;
             padding: 10px 44px;
+            border-radius: 16px;
             border: none;
+
+            @include lg{
+                font-size: 9px;
+                padding: 5px 22px;
+            }
+
+            @include sm{
+                font-size: 16px;
+                padding: 6px 32px;
+            }
 
         }
     }

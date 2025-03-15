@@ -1,4 +1,7 @@
-.main__header{
+@use '@/styles/Constants.scss' as *;
+
+.main{
+  .main__header {
     position: absolute;
     z-index: 1;
     width: 90%;
@@ -8,80 +11,205 @@
     justify-content: space-between;
     align-items: center;
 
-    &__logo{
-        width: 228px;
-        height: 46px;
-        color: black;
-
-        h3{
-            font-family: "Orbitron", sans-serif;
-            color: #FFFFFF;
-            font-weight: 600;
-            font-size: 36px;
-
-            sup{
-                font-size: 24px;
-            }
-        }
+    @include xl{
+      top: 10px;
     }
 
-    &__links{
-        gap: 56px;
-        padding: 14px 26px;
-        border-radius: 86px;
-        font-size: 20px;
-        font-weight: 400;
-        background: linear-gradient(90deg, #00000033 70%, #00000066 100%);
-        backdrop-filter: blur(40px);
+    &__logo {
+      width: 228px;
+      height: 46px;
+      color: black;
 
+      h3 {
+        font-family: "Orbitron", sans-serif;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 36px;
 
-        li{
-            cursor: pointer;
+        @include xl2{
+          font-size: 24px;
         }
+
+        @include sm{
+          font-size: 18px;
+        }
+
+        sup {
+          font-size: 24px;
+
+          @include sm{
+            font-size: 12px;
+          }
+
+          @include xl2{
+            font-size: 20px;
+          }
+        }
+      }
     }
-    
-    &__language{
-        padding: 16.5px 26px;
+
+    &__links {
+      gap: 56px;
+      padding: 14px 26px;
+      border-radius: 86px;
+      font-size: 20px;
+      font-weight: 400;
+      background: linear-gradient(90deg, #00000033 70%, #00000066 100%);
+      backdrop-filter: blur(40px);
+
+      @include xl2{
+        font-size: 10px;
+        padding: 7px 13px;
+      }
+      @include xl{
+        display: none;
+      }
+
+      li {
+        cursor: pointer;
+      }
+    }
+
+    &__language {
+      padding: 16.5px 26px;
+      background: #00000066;
+      border-radius: 26px;
+      gap: 6px;
+      position: relative;
+
+      @include xl2{
+        padding: 8px 13px;
+      }
+
+      svg {
+        transition: all 0.3s;
+        margin-left: 6px;
+        @include xl2{
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      .dropdown {
+        z-index: -1;
+        margin-top: 17px;
+        overflow: hidden;
+        position: absolute;
         background: #00000066;
+        width: 100%;
+        top: -17px;
+        left: 0;
         border-radius: 26px;
-        gap: 6px;
-        position: relative;
+        text-align: center;
+
+        img {
+          margin: 65px 26px 15px 26px;
+        }
+      }
+
+      img {
+        width: 30px;
+        height: 20px;
+
+        @include xl2{
+          width: 15px;
+          height: 10px;
+        }
+      }
+    }
+
+    &__contacts {
+      align-items: center;
+      gap: 16px;
+      background-color: #3467fe;
+      padding: 12px 40px;
+      border-radius: 16px;
+      border: none;
+
+      @include xl2{
+        font-size: 12px;
+        padding: 7px 24px;
 
         svg{
-            transition: all .3s;
-            margin-left: 6px;
+          width: 14px;
+          height: 14px;
         }
+      }
 
-        .dropdown {
-            z-index: -1;
-            margin-top: 17px;
-            overflow: hidden;
-            position: absolute;
-            background: #00000066;
-            width: 100%;
-            top: -17px;
-            left: 0;
-            border-radius: 26px;
-            text-align: center;
-            
-            img{
-                margin: 65px 26px 15px 26px;
-            }
-
-        }
-
-        img{
-            width: 30px;
-            height: 20px;
-        }
+      @include xl{
+        display: none;
+      }
     }
+  }
 
-    &__contacts{
-        align-items: center;
-        gap: 16px;
-        background-color: #3467FE;
-        padding: 12px 40px;
-        border-radius: 16px;
-        border: none;
-    }
+  .burger {
+  display: none;
+  cursor: pointer;
+
+  // @media (max-width: 768px) {
+  //   display: block;
+  // }
+
+  @include xl{
+    display: block;
+  }
 }
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.mobile-menu__close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.mobile-menu__links {
+  list-style: none;
+  text-align: center;
+
+  &_contact{
+    align-items: center;
+    gap: 16px;
+    background-color: #3467fe;
+    padding: 12px 40px;
+    border-radius: 16px;
+    border: none;
+  }
+
+  li {
+    margin: 20px 0;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #3467fe;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+}
+
+
+
+

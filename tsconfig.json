@@ -3,7 +3,11 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    // "baseUrl": "src",
+    // "paths": {
+    //   "@styles/*": ["src/styles"]
+    // }
   },
   "files": [],
   "references": [
