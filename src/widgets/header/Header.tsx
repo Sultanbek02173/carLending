@@ -4,8 +4,9 @@ import usaFlag from '../../shared/imgs/usa.png';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface HeaderProps {
   isOpen: boolean;
@@ -13,8 +14,10 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
+  const { t, i18n } = useTranslation();
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
 
   const handlerModal = () => {
     setIsOpen(!isOpen);
@@ -28,6 +31,23 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const changLang = (lang: string) => {
+    i18n.changeLanguage(lang);
+  }
+
+  useEffect(() => {
+    const handleLanguageChange = (lng: string) => {
+      setCurrentLanguage(lng);
+      console.log('Язык изменен на:', lng);
+    };
+
+    i18n.on('languageChanged', handleLanguageChange);
+
+    return () => {
+      i18n.off('languageChanged', handleLanguageChange);
+    };
+  }, []);
+
   return (
     <header className="main">
       <div className='main__header row'>
@@ -36,16 +56,16 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
         </div>
 
         <ul className="main__header__links row">
-          <a href="#about"><li>About</li></a>
-          <a href="#service"><li>Services</li></a>
-          <a href="#tariff"><li>Tariffs</li></a>
-          <a href="#review"><li>Reviews</li></a>
+          <a href="#about"><li>{t('header.about')}</li></a>
+          <a href="#service"><li>{t('header.Services')}</li></a>
+          <a href="#tariff"><li>{t('header.Tariffs')}</li></a>
+          <a href="#review"><li>{t('header.Reviews')}</li></a>
         </ul>
         
 
         <div onClick={handleToggle} className="main__header__language">
           <div className="row">
-            <img src={russianFlag} alt="" />
+            <img src={currentLanguage === 'ru' ? russianFlag : usaFlag} alt="Russian flag" /> 
             <IoIosArrowDown
               size={18}
               style={isAnimating ? { rotate: '180deg' } : { rotate: '0deg' }}
@@ -61,14 +81,16 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
                 exit={{ height: 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <img src={usaFlag} alt="USA Flag" />
+                <img onClick={() => {
+                  changLang(currentLanguage === 'ru' ? 'en' : 'ru') 
+                }} src={currentLanguage === 'en' ? russianFlag : usaFlag} alt="USA Flag" />
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
         <button onClick={handlerModal} className="main__header__contacts row">
-          <p>Contacts</p>
+          <p>{t('header.Contacts')}</p>
           <FaPhoneAlt size={15} />
         </button>
 
@@ -92,17 +114,17 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
               </div>
 
               <ul className="mobile-menu__links">
-                <a href="#about" onClick={toggleMenu}><li>About</li></a>
-                <a href="#service" onClick={toggleMenu}><li>Services</li></a>
-                <a href="#tariff" onClick={toggleMenu}><li>Tariffs</li></a>
-                <a href="#review" onClick={toggleMenu}><li>Reviews</li></a>
+                <a href="#about" onClick={toggleMenu}><li>{t('header.about')}</li></a>
+                <a href="#service" onClick={toggleMenu}><li>{t('header.Services')}</li></a>
+                <a href="#tariff" onClick={toggleMenu}><li>{t('header.Tariffs')}</li></a>
+                <a href="#review" onClick={toggleMenu}><li>{t('header.Reviews')}</li></a>
               </ul>
 
               <button onClick={() => {
                 setIsMenuOpen(!isMenuOpen)
                 handlerModal()
                 }} className="mobile-menu__links_contact row">
-                <p>Contacts</p>
+                <p>{t('header.Contacts')}</p>
                 <FaPhoneAlt size={15} />
               </button>
             </motion.div>

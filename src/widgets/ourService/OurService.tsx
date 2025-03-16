@@ -2,10 +2,12 @@ import { ServiceCart } from '../../features';
 import './ourService.scss';
 import arrow from '../../shared/imgs/Vector.png';
 import { Carts } from '../../types';
+import { useTranslation } from 'react-i18next';
 
 
 
 export const OurService = () => {
+  const {t} = useTranslation();
 
   const carts: Carts[] = [
     {
@@ -46,7 +48,7 @@ export const OurService = () => {
   ]
   return (
     <div id="service" className="service__container">
-      <h2 className='title'>Our services</h2>
+      <h2 className='title'>{t('header.services')}</h2>
 
       <div className='service__container__carts row'>
         {

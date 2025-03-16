@@ -1,20 +1,62 @@
+@use '@/styles/Constants.scss' as *;
+
 .tariff__section{
     margin-top: 100px;
+
+    @include xl2{
+        margin-top: 60px;
+    }
+
+    @include md{
+        margin-top: 86px;
+    }
 
     &__navigate{
         justify-content: space-between;
         align-items: center;
         margin-bottom: 60px;
+        @include xl2{
+            margin-bottom: 30px;
+        }
+
+        @include md{
+            margin-bottom: 26px;
+
+            .title{
+                width: 100%;
+            }
+        }
 
         &__catalog{
             gap: 75px;
             font-size: 20px;
             font-weight: 500;
             line-height: 50px;
+
+            @include xl2{
+                gap: 44px;
+                font-size: 14px;
+                line-height: 26px;
+            }
+
+            @include md{
+                width: 70%;
+                gap: 36px;
+                font-size: 14px;
+                line-height: 26px;
+            }
     
             p{
                 padding: 0 31px;
                 cursor: pointer;
+
+                @include xl2{
+                    padding: 0 8px;
+                }
+
+                @include md{
+                    padding: 0 19px;
+                }
             }
         }
     

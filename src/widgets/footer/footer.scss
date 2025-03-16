@@ -1,3 +1,5 @@
+@use '@/styles/Constants.scss' as *;
+
 .main__footer{
     width: 100%;
     margin-top: 140px;
@@ -7,10 +9,34 @@
     border: 1px solid #3467FE;
     border-radius: 62px;
 
+    @include xl{
+        margin-top: 80px;
+        padding: 4px 45px;
+        margin-bottom: 22px;
+    }
+
+    @include md{
+        margin-top: 170px;
+        padding: 4px 45px;
+        margin-bottom: 16px;
+    }
+
     &__links{
         margin-top: 56px;
         margin-bottom: 86px;
         gap: 66px;
+
+        @include xl{
+            margin-top: 29px;
+            margin-bottom: 39px;
+            gap: 33px;
+        }
+
+        @include md{
+            margin-top: 16px;
+            margin-bottom: 76px;
+            gap: 26px;
+        }
     }
 
     &__social{

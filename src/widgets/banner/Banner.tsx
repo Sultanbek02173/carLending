@@ -1,10 +1,27 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import './banner.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import axiosApi from '../../shared/api/axiosApi';
 
 export const Banner = () => {
+  const {t} = useTranslation();
   const [isAnimating, setIsAnimating] = useState(false);
   const [selected, setSelected] = useState('Economy');
+  const [data, setData] = useState();
+
+  const getBannerDate = () => {
+    axiosApi('/api/v1/base/base/').
+    then(({data}) => setData(data)).
+    catch((error) => console.log(error))
+  }
+
+  useEffect(() => {
+    getBannerDate();
+  }, [])
+
+  console.log(data);
+  
 
   return (
     <div className='banner__section'>
@@ -21,16 +38,15 @@ export const Banner = () => {
 
       <div className='banner__section__order row'>
         <div className='banner__section__order__item'>
-          <p>Pick Up</p>
+          <p>{t('banner.PickUp')}</p>
           <input type="text" placeholder='Manas Airpot' />
         </div>
         <div className='banner__section__order__item line'>
-          <p>Enter destination</p>
+          <p>{t('banner.destination')}</p>
           <input type="text" placeholder='Oligarkh Hotel' />
-
         </div>
         <div className='banner__section__order__item line'>
-          <p>Tariff</p>
+          <p>{t('banner.Tariff')}</p>
           <div className='select row'>
             <h3 onClick={() => setIsAnimating(!isAnimating)}>{selected}</h3>
 
@@ -67,15 +83,15 @@ export const Banner = () => {
           
         </div>
         <div className='banner__section__order__item line '>
-          <p>Pick Up</p>
+          <p>{t('banner.date')}</p>
           <input type="datetime-local" placeholder='11/03/2025' className='date' />
         </div>
         <div className='banner__section__order__item line'>
-          <p>Pick Up</p>
+          <p>{t('banner.Phone')}</p>
           <input type="text" placeholder='0990-090-086' />
         </div>
         <div className='banner__section__order__item line'>
-          <button className='order_btn'>Order</button>
+          <button className='order_btn'>{t('banner.Order')}</button>
         </div>
       </div>
     </div>

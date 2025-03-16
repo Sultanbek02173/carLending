@@ -1,4 +1,5 @@
 import bgTitle from '../../shared/imgs/Maskgroup.png';
+import bgMobTitle from '../../shared/imgs/transfer.png';
 import './transferService.scss';
 
 export const TransferService = () => {
@@ -6,6 +7,8 @@ export const TransferService = () => {
     <div id="about" className='about__section row'>
       <div className='about__section__img'>
         <img src={bgTitle} alt="bgTitle" />
+        <img src={bgMobTitle} alt="" />
+        <h1 className='about__section__img_title'>Your Trusted Partner in Transfer Services</h1>
       </div>
       <div className='about__section__texts'>
         <h1 className='about__section__texts_title'>Your Trusted Partner in Transfer Services</h1>

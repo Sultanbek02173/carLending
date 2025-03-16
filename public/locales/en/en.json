@@ -1,0 +1,20 @@
+{
+    "header": {
+        "about": "About",
+        "Services": "Services",
+        "Tariffs": "Tariffs",
+        "Reviews": "Reviews",
+        "Contacts": "Contacts",
+        "services": "Our services",
+        "Tariffs2": "Tariffs",
+        "costumers": "What our costumers say"
+    },
+    "banner": {
+        "PickUp": "Pick Up",
+        "destination": "Enter destination",
+        "Tariff": "Tariff",
+        "date": "Pick up date",
+        "Phone": "Phone",
+        "Order": "Order"
+    }
+}

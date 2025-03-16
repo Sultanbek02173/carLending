@@ -1,14 +1,68 @@
+@use '@/styles/Constants.scss' as *;
+
 .about__section{
     margin-top: 85px;
     width: 100%;
     gap: 32px;
 
+    // @include lg{
+    //     height: 540px;
+    // }
+
+    // @include xl2{
+    //     height: 440px;
+    // }
+
+    // @include xl{
+    //     height: 340px;
+    // }
+
+    // @include md{
+    //     height: 316px;
+    //     background-size: cover;
+    // }
+
+    // @include sm{
+    //     height: 560px;
+    //     margin-bottom: 300px;
+    // }
+
     &__img{
         width: 27%;
+        position: relative;
 
-        img{
+        @include md{
+            width: 100%;
+        }
+
+        &_title{
+            display: none;
+
+            @include md{
+                display: block;
+                position: absolute;
+                top: 0;
+                width: 70%;
+                right: 0;
+                font-size: 28px;
+                font-weight: 500;
+            }
+        }
+
+        img:first-child{
             width: 100%;
             object-fit: cover;
+            @include md{
+                display: none;
+            }
+        }
+
+        img:nth-child(2){
+            display: none;
+            @include md{
+                display: block;
+                width: 100%;
+            }
         }
     }
 
@@ -17,6 +71,14 @@
         position: relative;
         z-index: -2;
 
+        @include xl2{
+            width: 65%;
+        }
+
+        @include md{
+            width: 100%;
+        }
+
         &_title{
             font-size: 40px;
             font-weight: 500;
@@ -24,16 +86,59 @@
             position: absolute;
             z-index: -1;
             left: -14%;
+
+            @include lg{
+                font-size: 34px;
+                margin-top: 20px;
+            }
+
+            @include xl2{
+                font-size: 28px;
+                margin-top: 16px;
+            }
+
+            @include xl{
+                font-size: 20px;
+                margin-top: 13px;
+            }
+
+            @include md{
+                display: none;
+            }
         }
 
         &_paragraph:nth-child(2){
             margin-top: 135px;
+            @include xl2{
+                margin-top: 90px;
+            }
+            @include xl{
+                margin-top: 70px;
+            }
+
+            @include md{
+                margin-top: 16px;
+            }
         }
 
         &_paragraph{
             font-size: 20px;
             font-weight: 400;
             margin-bottom: 40px;
+
+            @include xl2{
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            @include xl{
+                font-size: 10px;
+                margin-bottom: 20px;
+            }
+
+            @include md{
+                font-size: 16px;
+            }
         }
 
         &_paragraph:last-child{

@@ -5,8 +5,10 @@ import './swiperVideo.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import { videoSwiperProps } from '../../types';
+import { useTranslation } from 'react-i18next';
 
 export const SwiperVideo = () => {
+  const {t} = useTranslation();
 
   const videoSwiper: videoSwiperProps[] = [
     {
@@ -36,11 +38,10 @@ export const SwiperVideo = () => {
   ]
   return (
     <div id="review" className="review__section">
-      <h2 className="title">What our customers say</h2>
+      <h2 className="title">{t('header.costumers')}</h2>
 
       <div className="review__section__swiper ">
         <Swiper
-
           spaceBetween={30}
           pagination={{ clickable: true, el: '.custom-pagination' }} 
           modules={[Pagination]} 

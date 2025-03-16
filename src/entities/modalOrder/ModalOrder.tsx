@@ -28,7 +28,7 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal__container">
+    <div className="modal__container container">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

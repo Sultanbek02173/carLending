@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { CarCarts } from '../../features';
 import car from '../../shared/imgs/car.png';
 import './tariffs.scss';
+import { useTranslation } from 'react-i18next';
 
 interface carsProps {
   id: number;
@@ -10,7 +11,7 @@ interface carsProps {
 }
 
 export const Tariffs = () => {
-
+  const {t} = useTranslation();
   const [active, setActive] = useState<string>('Economy');
   const cars: carsProps[] = [
     {
@@ -47,7 +48,7 @@ export const Tariffs = () => {
   return (
     <div id="tariff" className="tariff__section">
       <div className='tariff__section__navigate row'>
-        <h2 className="title">Tariffs</h2>
+        <h2 className="title">{t('header.Tariffs2')}</h2>
 
         <div className="tariff__section__navigate__catalog row">
           <p onClick={() => setActive('Economy')} className={active === 'Economy' ? 'active' : ''}>Economy</p>
