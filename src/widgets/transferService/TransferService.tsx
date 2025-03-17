@@ -5,15 +5,24 @@ import bgMobTitle from '../../shared/imgs/transfer.png';
 import './transferService.scss';
 import { useEffect } from 'react';
 import { getTransferData } from '../../app/store/reducer/transferReducer';
+import i18n from '../../i18next/i18n';
 
 export const TransferService = () => {
   const dispatch = useAppDispatch();
 
   const serviceData = useSelector((state: RootState) => state.service.data);
 
-  useEffect(() => {
+  const fetchTransferData = () => {
     dispatch(getTransferData());
-  }, [dispatch])
+  } 
+
+  useEffect(() => {
+    fetchTransferData();
+    i18n.on('languageChanged', fetchTransferData);
+    return () => {
+        i18n.off('languageChanged', fetchTransferData);
+    };
+  }, [i18n]);
 
   const service = serviceData[0]; 
   

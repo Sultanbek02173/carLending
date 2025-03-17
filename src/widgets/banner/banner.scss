@@ -25,16 +25,16 @@
     @include md{
         height: 316px;
         background-size: cover;
+        margin-bottom: 300px;
     }
 
     @include sm{
         height: 560px;
-        margin-bottom: 300px;
     }
 
     &__description{
         position: absolute;
-        top: 245px;
+        top: 40%;
         padding-left: 36px;
 
         @include xl2{
@@ -49,13 +49,16 @@
         }
         
         h1{
-            width: 423px;
+            width: 70%;
             font-size: 48px;
             font-weight: 500;
 
             @include xl2{
-                width: 267px;
                 font-size: 30px;
+            }
+
+            @include md{
+                font-size: 20px;
             }
 
             @include sm{
@@ -71,6 +74,10 @@
             @include xl2{
                 width: 400px;
                 font-size: 12px;
+            }
+
+            @include md{
+                font-size: 10px;
             }
 
             @include sm{
@@ -97,6 +104,11 @@
             padding: 7px 0;
         }
 
+        @include md{
+            padding: 10px 0;
+            bottom: -200px;
+        }
+
         @include sm{
             padding: 10px 0;
             bottom: -250px;
@@ -109,7 +121,7 @@
                 padding: 0 13px;
             }
 
-            @include sm{
+            @include md{
                 padding: 16px 0;
                 width: 50%;
                 text-align: center;
@@ -118,7 +130,7 @@
             .select{
                 position: relative;
 
-                @include sm{
+                @include md{
                     width: 100%;
                     display: flex;
                     justify-content: center;
@@ -131,7 +143,6 @@
 
                     @include lg{
                         font-size: 10px;
-
                     }
 
                     @include sm{
@@ -149,7 +160,7 @@
                     top: 20px;
                     left: -20px;
 
-                    @include sm{
+                    @include md{
                         width: 100%;
                         left: 0px;
                         
@@ -178,6 +189,10 @@
                     font-size: 9px;
                     font-weight: 400; 
                     margin-bottom: 4px;
+                }
+
+                @include md{
+                    padding: 0px 8px;
                 }
 
                 @include sm{
@@ -246,13 +261,13 @@
             border-right: 1px solid #4E5669;
         }
         .line:nth-child(3){
-            @include sm{
+            @include md{
                 border-left: none;
             }
         }
 
         .line:nth-child(5){
-            @include sm{
+            @include md{
                 border-left: none;
             }
         }

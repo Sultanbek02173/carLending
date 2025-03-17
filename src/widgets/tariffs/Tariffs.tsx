@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { RootState, useAppDispatch } from '../../app/store/store';
 import { useSelector } from 'react-redux';
 import { getTariffsData } from '../../app/store/reducer/tariffsReducer';
+import i18n from '../../i18next/i18n';
 
 
 export const Tariffs = () => {
@@ -14,9 +15,17 @@ export const Tariffs = () => {
 
   const tariffs = useSelector((state: RootState) => state.tariffs.data);
 
-  useEffect(() => {
+  const fetchTariffsData = () => {
     dispatch(getTariffsData());
-  }, [dispatch])
+  } 
+
+  useEffect(() => {
+    fetchTariffsData();
+    i18n.on('languageChanged', fetchTariffsData);
+    return () => {
+        i18n.off('languageChanged', fetchTariffsData);
+    };
+  }, [i18n]);
 
   return (
     <div id="tariff" className="tariff__section">

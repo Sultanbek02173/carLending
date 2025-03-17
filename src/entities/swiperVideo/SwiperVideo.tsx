@@ -9,6 +9,7 @@ import { RootState, useAppDispatch } from '../../app/store/store';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getSwiperData } from '../../app/store/reducer/swiperReducer';
+import i18n from '../../i18next/i18n';
 
 export const SwiperVideo = () => {
   const {t} = useTranslation();
@@ -16,11 +17,17 @@ export const SwiperVideo = () => {
 
   const swiper = useSelector((state: RootState) => state.swiper.data);
 
-  useEffect(() => {
-    dispatch(getSwiperData())
-  }, [dispatch])
+  const fetchSwiperDat = () => {
+    dispatch(getSwiperData());
+  } 
 
-  console.log(swiper);
+  useEffect(() => {
+    fetchSwiperDat();
+    i18n.on('languageChanged', fetchSwiperDat);
+    return () => {
+        i18n.off('languageChanged', fetchSwiperDat);
+    };
+  }, [i18n]);
   
   return (
     <div id="review" className="review__section">

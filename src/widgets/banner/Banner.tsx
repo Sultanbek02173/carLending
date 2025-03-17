@@ -8,6 +8,7 @@ import { RootState } from '../../app/store/store';
 import { getBannerData } from '../../app/store/reducer/homeReducer';
 import { feedbackState } from '../../types';
 import axiosApi from '../../shared/api/axiosApi';
+import i18n from '../../i18next/i18n';
 
 export const Banner = () => {
   const { t } = useTranslation();
@@ -44,9 +45,17 @@ export const Banner = () => {
     return alert(t('succes'));
   }
 
-  useEffect(() => {
+  const fetchBannerData = () => {
     dispatch(getBannerData());
-  }, [dispatch]);
+  } 
+
+  useEffect(() => {
+    fetchBannerData();
+    i18n.on('languageChanged', fetchBannerData);
+    return () => {
+        i18n.off('languageChanged', fetchBannerData);
+    };
+  }, [i18n]);
 
   const data = bannerData[0];
 

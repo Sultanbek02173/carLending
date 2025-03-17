@@ -38,7 +38,6 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
   useEffect(() => {
     const handleLanguageChange = (lng: string) => {
       setCurrentLanguage(lng);
-      console.log('Язык изменен на:', lng);
     };
 
     i18n.on('languageChanged', handleLanguageChange);
@@ -46,7 +45,7 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
     return () => {
       i18n.off('languageChanged', handleLanguageChange);
     };
-  }, []);
+  }, [i18n]);
 
   return (
     <header className="main">

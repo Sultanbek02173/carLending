@@ -6,6 +6,7 @@ import { RootState, useAppDispatch } from '../../app/store/store';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getOurServiceData } from '../../app/store/reducer/ourServiceReducer';
+import i18n from '../../i18next/i18n';
 
 
 export const OurService = () => {
@@ -13,10 +14,18 @@ export const OurService = () => {
   const dispatch = useAppDispatch();
 
   const ourService = useSelector((state: RootState) => state.ourService.data);
-  
-  useEffect(() => {
+
+  const fetchOurServiceData = () => {
     dispatch(getOurServiceData());
-  }, [dispatch])
+  } 
+
+  useEffect(() => {
+    fetchOurServiceData();
+    i18n.on('languageChanged', fetchOurServiceData);
+    return () => {
+        i18n.off('languageChanged', fetchOurServiceData);
+    };
+  }, [i18n]);
 
   return (
     <div id="service" className="service__container">
