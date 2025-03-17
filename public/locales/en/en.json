@@ -16,7 +16,8 @@
         "Tariff": "Tariff",
         "date": "Pick up date",
         "Phone": "Phone",
-        "Order": "Order"
+        "Order": "Order",
+        "link": "We Help You Select the Service and Tariff"
     },
     "modal": {
         "title": "We’ll Help You Resolve All Your Questions",
@@ -29,5 +30,4 @@
     },
     "error": "Fill in all fields",
     "succes": "Sent successfully"
-
 }

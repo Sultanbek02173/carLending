@@ -40,7 +40,7 @@ export const OurService = () => {
         }
 
         <div className='service__container__link'>
-          <h2>We Help You Select the Service and Tariff</h2>
+          <h2>{t('banner.link')}</h2>
           <img src={arrow} alt="" />
         </div>
       </div>
