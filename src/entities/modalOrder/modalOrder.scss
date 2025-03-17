@@ -1,7 +1,9 @@
+@use '@/styles/Constants.scss' as *;
+
 .modal__container{
     position: fixed;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #1010144D;
     backdrop-filter: blur(12px);
     display: flex;
@@ -10,24 +12,60 @@
     top: 0;
     left: 0;
     z-index: 2;
-    padding: 190px 120px;
+
+    @include xl2{
+        padding: 36px 16px;
+    }
+
+    @include sm{
+        padding: 13px 8px;
+    }
 
     &__item{
         position: relative;
-        width: 100%;
+        max-width: 1200px;
+        width: 90%;
+        margin: 0 auto;
         background-color: #2D323C;
         border-radius: 56px;
         padding: 28px 82px;
         justify-content: space-between;
 
+        @include xl2{
+            padding: 16px;
+            border-radius: 26px;
+        }
+
+        @include xl2{
+            padding: 16px;
+            border-radius: 13px;
+        }
+
         &__form{
             width: 40%;
+
+            @include xl2{
+                width: 100%;
+            }
 
             h2{
                 font-size: 32px;
                 font-weight: 700;
                 line-height: 40px;
                 margin-bottom: 21px;
+
+                @include xl2{
+                    width: 80%;
+                    font-size: 22px;
+                    margin-bottom: 10px;
+                }
+
+                @include sm{
+                    width: 80%;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                    line-height: 18px;
+                }
             }
 
             p{
@@ -35,6 +73,17 @@
                 line-height: 24px;
                 font-weight: 500;
                 margin-bottom: 33px;
+
+                @include xl2{
+                    font-size: 16px;
+                    margin-bottom: 26px;
+                }
+
+                @include sm{
+                    font-size: 10px;
+                    line-height: 12px;
+                    margin-bottom: 5px;
+                }
             }
 
             .input input{
@@ -45,10 +94,20 @@
                 padding: 19px 33px;
                 border-radius: 16px;
                 margin-bottom: 14px;
+
+                @include xl2{
+                    padding: 8px 13px;
+                    font-size: 16px;
+                    border-radius: 10px;
+                }
             }
 
             .input input::placeholder{
                 color: #101014;
+
+                @include xl2{
+                    font-size: 16px;
+                }
             }
 
             .flex__input{
@@ -66,21 +125,55 @@
                 text-align: center;
                 border: 1px solid #FFFFFF;
                 border-radius: 12px;
+
+                @include xl2{
+                    padding: 8px auto;
+                    font-size: 16px;
+                    border-radius: 10px;
+                }
             }
         }
 
         &__social{
             padding-top: 49px;
             width: 40%;
+
+            @include xl2{
+                padding-top: 20px;
+                width: 100%;
+            }
+
+            @include xl{
+                padding-top: 20px;
+                width: 100%;
+            }
             
             h2{
                 margin-bottom: 45px;
+
+                @include xl2{
+                    margin-bottom: 26px;
+                }
+
+                @include sm{
+                    margin-bottom: 18px;
+                    font-size: 14px;
+                }
             }
 
             &__item{
                 align-items: center;
                 gap: 12px;
                 margin-bottom: 22px;
+
+                @include xl2{
+                    margin-bottom: 16px;
+                }
+
+                @include sm{
+                    font-size: 10px;
+                    margin-bottom: 16px;
+                }
 
                 svg{
                     color: #3467FE;
@@ -91,6 +184,11 @@
             &__links{
                 margin-top: 23px;
                 gap: 28px;
+
+                @include xl2{
+                    margin-top: 16px;
+                }
+
                 svg{
                     font-size: 34px;
                 }
@@ -102,8 +200,16 @@
             top: 34px;
             right: 34px;
 
+            @include xl2{
+                top: 16px;
+                right: 16px;
+            }
+
             svg{
                 font-size: 40px;
+                @include xl2{
+                    font-size: 30px;
+                }
             }
         }
     }

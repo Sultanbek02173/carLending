@@ -1,50 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CarCarts } from '../../features';
-import car from '../../shared/imgs/car.png';
 import './tariffs.scss';
 import { useTranslation } from 'react-i18next';
+import { RootState, useAppDispatch } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { getTariffsData } from '../../app/store/reducer/tariffsReducer';
 
-interface carsProps {
-  id: number;
-  img: string;
-  description: string;
-}
 
 export const Tariffs = () => {
   const {t} = useTranslation();
+  const dispatch = useAppDispatch();
   const [active, setActive] = useState<string>('Economy');
-  const cars: carsProps[] = [
-    {
-      id: 0,
-      img: car,
-      description: 'Lexus 570, 2020+'
-    },
-    {
-      id: 1,
-      img: car,
-      description: 'Toyota LC 200, 2020+'
-    },
-    {
-      id: 2,
-      img: car,
-      description: 'Toyota LC 200, 2020+'
-    },
-    {
-      id: 3,
-      img: car,
-      description: 'BMW 7 Series, 2020+'
-    },
-    {
-      id: 4,
-      img: car,
-      description: 'BMW X7, 2020+'
-    },
-    {
-      id: 5,
-      img: car,
-      description: 'Mercedes GLE, 2020+'
-    },
-  ]
+
+  const tariffs = useSelector((state: RootState) => state.tariffs.data);
+
+  useEffect(() => {
+    dispatch(getTariffsData());
+  }, [dispatch])
+
   return (
     <div id="tariff" className="tariff__section">
       <div className='tariff__section__navigate row'>
@@ -61,10 +34,15 @@ export const Tariffs = () => {
 
       <div className='tariff__section__cars row'> 
         {
-          cars && 
-          cars.map((car) => (
-            <CarCarts key={car.id} id={car.id} description={car.description} img={car.img} />
-          ))
+          tariffs &&
+          tariffs.map((car, index) => {
+            if (car.type === active) {
+              return (
+                <CarCarts key={index} description={car.title} img={car.image} />
+              );
+            }
+            return null;
+          })
         }
       </div>
     </div>

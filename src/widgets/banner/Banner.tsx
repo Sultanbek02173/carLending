@@ -2,48 +2,69 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './banner.scss';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store/store';
+import { getBannerData } from '../../app/store/reducer/homeReducer';
+import { feedbackState } from '../../types';
 import axiosApi from '../../shared/api/axiosApi';
 
 export const Banner = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const [isAnimating, setIsAnimating] = useState(false);
   const [selected, setSelected] = useState('Economy');
-  const [data, setData] = useState();
+  
+  const [feedback, setFeedback] = useState<feedbackState>({
+    title: '',
+    description: '',
+    tariff: 'Economy',
+    date: '',
+    phone_number: ''
+  });
 
-  const getBannerDate = () => {
-    axiosApi('/api/v1/base/base/').
-    then(({data}) => setData(data)).
-    catch((error) => console.log(error))
+  const bannerData = useSelector((state: RootState) => state.banner.data);
+  
+  const getFeedback = (feedback: feedbackState) => {
+    axiosApi.post('/api/v1/base/feedback/', feedback).then(() => {setFeedback({
+      title: '',
+      description: '',
+      tariff: 'Economy',
+      date: '',
+      phone_number: ''
+    })}).catch((error) => console.log(error))
+  }
+
+  const handlerFeed = () => {
+    const { title, description, tariff, date, phone_number } = feedback;
+    if (title === '' || description === '' || tariff === '' || date === '' || phone_number === '') {
+      return alert(t('error'));
+    }
+    getFeedback(feedback);
+    return alert(t('succes'));
   }
 
   useEffect(() => {
-    getBannerDate();
-  }, [])
+    dispatch(getBannerData());
+  }, [dispatch]);
 
-  console.log(data);
-  
+  const data = bannerData[0];
 
   return (
     <div className='banner__section'>
-
       <div className='banner__section__description'>
-        <h1>
-          Exclusive Transfers, 
-          Premier Service
-        </h1>
-        <p>
-          Transfer24 is your trusted partner for transfers across Kyrgyzstan. We provide luxurious rides with professional drivers, ensuring utmost comfort, safety, and punctuality. Trust us to take care of every detail so you can enjoy a journey marked by excellence.
-        </p>
+        <h1>{data?.title}</h1>
+        <p dangerouslySetInnerHTML={{ __html: data?.description }}></p>
       </div>
 
       <div className='banner__section__order row'>
         <div className='banner__section__order__item'>
           <p>{t('banner.PickUp')}</p>
-          <input type="text" placeholder='Manas Airpot' />
+          <input onChange={(e) => { setFeedback({ ...feedback, title: e.target.value }) }} type="text" placeholder='Manas Airpot' />
         </div>
         <div className='banner__section__order__item line'>
           <p>{t('banner.destination')}</p>
-          <input type="text" placeholder='Oligarkh Hotel' />
+          <input onChange={(e) => { setFeedback({ ...feedback, description: e.target.value }) }} type="text" placeholder='Oligarkh Hotel' />
         </div>
         <div className='banner__section__order__item line'>
           <p>{t('banner.Tariff')}</p>
@@ -60,40 +81,42 @@ export const Banner = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <h3 onClick={() => {
-                    setSelected('Economy')
-                    setIsAnimating(!isAnimating)
+                    setSelected('Economy');
+                    setFeedback({ ...feedback, tariff: 'Economy' });
+                    setIsAnimating(!isAnimating);
                   }}>Economy</h3>
                   <h3 onClick={() => {
-                    setSelected('Comfort')
-                    setIsAnimating(!isAnimating)
+                    setSelected('Comfort');
+                    setFeedback({ ...feedback, tariff: 'Comfort' });
+                    setIsAnimating(!isAnimating);
                   }}>Comfort</h3>
                   <h3 onClick={() => {
-                    setSelected('Premium')
-                    setIsAnimating(!isAnimating)
+                    setSelected('Premium');
+                    setFeedback({ ...feedback, tariff: 'Premium' });
+                    setIsAnimating(!isAnimating);
                   }}>Premium</h3>
                   <h3 onClick={() => {
-                    setSelected('Premium+')
-                    setIsAnimating(!isAnimating)
+                    setSelected('Premium+');
+                    setFeedback({ ...feedback, tariff: 'Premium+' });
+                    setIsAnimating(!isAnimating);
                   }}>Premium+</h3>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
-
-          
         </div>
-        <div className='banner__section__order__item line '>
+        <div className='banner__section__order__item line'>
           <p>{t('banner.date')}</p>
-          <input type="datetime-local" placeholder='11/03/2025' className='date' />
+          <input onChange={(e) => { setFeedback({ ...feedback, date: e.target.value }) }} type="datetime-local" placeholder='11/03/2025' className='date' />
         </div>
         <div className='banner__section__order__item line'>
           <p>{t('banner.Phone')}</p>
-          <input type="text" placeholder='0990-090-086' />
+          <input onChange={(e) => { setFeedback({ ...feedback, phone_number: e.target.value }) }} type="text" placeholder='0990-090-086' />
         </div>
         <div className='banner__section__order__item line'>
-          <button className='order_btn'>{t('banner.Order')}</button>
+          <button onClick={handlerFeed} className='order_btn'>{t('banner.Order')}</button>
         </div>
       </div>
     </div>
-  )
+  );
 }

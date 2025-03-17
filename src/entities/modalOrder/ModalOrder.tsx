@@ -1,10 +1,13 @@
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import {motion} from 'framer-motion';
 import './modalOrder.scss';
 import { MdEmail, MdLocationPin } from 'react-icons/md';
 import { FaInstagram, FaPhoneAlt, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { GoClockFill } from 'react-icons/go';
 import { IoMdClose } from 'react-icons/io';
+import { contactState } from '../../types';
+import axiosApi from '../../shared/api/axiosApi';
+import { useTranslation } from 'react-i18next';
 
 interface ModalOrderProps {
   isOpen: boolean,
@@ -12,6 +15,31 @@ interface ModalOrderProps {
 }
 
 export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
+  const { t } = useTranslation();
+  const [contact, setContact] = useState<contactState>({
+    name: '',
+    phone_number: '',
+    email: '',
+  });
+
+  const getContact = (contact: contactState) => {
+    axiosApi.post('/api/v1/base/contact/', contact).
+    then(() => {setContact({
+        name: '',
+        phone_number: '',
+        email: '',
+    })})
+  }
+
+  const handlerContact = () => {
+    const {name, phone_number, email} = contact;
+    if (name === '' || phone_number === '' || email === ''){
+      return alert(t('error'));
+    }
+
+    getContact(contact);
+    return alert(t('succes'));
+  }
 
   useEffect(() => {
     if (isOpen) {
@@ -28,7 +56,7 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal__container container">
+    <div className="modal__container">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -36,31 +64,27 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
         className="modal__container__item row"
       >
         <div className='modal__container__item__form'>
-          <h2>
-            We’ll Help You Resolve All Your Questions
-          </h2>
-          <p>
-            If you want to learn more about our services or aren’t sure which rate or route is best for you, just leave a request and we’ll give you a call back.
-          </p>
+          <h2>{t('modal.title')}</h2>
+          <p>{t('modal.description')}</p>
           <div className='input'>
-            <input type="text" placeholder='Name' />
+            <input value={contact.name} type="text" placeholder={t('modal.nameInp')} onChange={(e) => { setContact({ ...contact, name: e.target.value }) }} />
           </div>
           <div className='flex__input row'>
             <div className='input__container input'>
-              <input type="text" placeholder='Phone namber' />
+              <input value={contact.phone_number} type="text" placeholder={t('modal.phoneInp')} onChange={(e) => { setContact({ ...contact, phone_number: e.target.value }) }} />
             </div>
             <div className='input__container input'>
-              <input type="email" placeholder='Email' />
+              <input value={contact.email} type="email" placeholder={t('modal.Email')} onChange={(e) => { setContact({ ...contact, email: e.target.value }) }} />
             </div>
           </div>
-          <button className='modal__container__item__form_button'>Send</button>
+          <button onClick={handlerContact} className='modal__container__item__form_button'>{t('header.Send')}</button>
         </div>
 
         <div className='modal__container__item__social'>
-          <h2>Info</h2>
+          <h2>{t('modal.Info')}</h2>
           <div className='modal__container__item__social__item row'>
             <MdLocationPin />
-            <p>Bishkek, Toktogulova st. 23/a</p>
+            <p>{t('modal.loc')}</p>
           </div>
           <div className='modal__container__item__social__item row'>
             <FaPhoneAlt />

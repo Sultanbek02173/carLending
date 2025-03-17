@@ -4,38 +4,24 @@ import './swiperVideo.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { videoSwiperProps } from '../../types';
 import { useTranslation } from 'react-i18next';
+import { RootState, useAppDispatch } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getSwiperData } from '../../app/store/reducer/swiperReducer';
 
 export const SwiperVideo = () => {
   const {t} = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const videoSwiper: videoSwiperProps[] = [
-    {
-      id: 0,
-      link: 'https://www.youtube.com/embed/qSpwpMjuduc?si=4hLJnan_xX9iNfHp',
-      title: 'Chen Xinwei',
-      description: "I, Chen Xinwei, am extremely satisfied with Transfer24's service. Every journey was organized to perfection: the vehicles were always impeccably clean and comfortable, and the drivers were professional and punctual. Thanks to their attention to detail, my business trips were completely stress-free, allowing me to focus fully on important meetings. I highly recommend Transfer24 to anyone who values quality, reliability, and exceptional service.",
-    },
-    {
-      id: 1,
-      link: 'https://www.youtube.com/embed/qSpwpMjuduc?si=4hLJnan_xX9iNfHp',
-      title: 'Chen Xinwei',
-      description: "I, Chen Xinwei, am extremely satisfied with Transfer24's service. Every journey was organized to perfection: the vehicles were always impeccably clean and comfortable, and the drivers were professional and punctual. Thanks to their attention to detail, my business trips were completely stress-free, allowing me to focus fully on important meetings. I highly recommend Transfer24 to anyone who values quality, reliability, and exceptional service.",
-    },
-    {
-      id: 2,
-      link: 'https://www.youtube.com/embed/qSpwpMjuduc?si=4hLJnan_xX9iNfHp',
-      title: 'Chen Xinwei',
-      description: "I, Chen Xinwei, am extremely satisfied with Transfer24's service. Every journey was organized to perfection: the vehicles were always impeccably clean and comfortable, and the drivers were professional and punctual. Thanks to their attention to detail, my business trips were completely stress-free, allowing me to focus fully on important meetings. I highly recommend Transfer24 to anyone who values quality, reliability, and exceptional service.",
-    },
-    {
-      id: 3,
-      link: 'https://www.youtube.com/embed/qSpwpMjuduc?si=4hLJnan_xX9iNfHp',
-      title: 'Chen Xinwei',
-      description: "I, Chen Xinwei, am extremely satisfied with Transfer24's service. Every journey was organized to perfection: the vehicles were always impeccably clean and comfortable, and the drivers were professional and punctual. Thanks to their attention to detail, my business trips were completely stress-free, allowing me to focus fully on important meetings. I highly recommend Transfer24 to anyone who values quality, reliability, and exceptional service.",
-    },
-  ]
+  const swiper = useSelector((state: RootState) => state.swiper.data);
+
+  useEffect(() => {
+    dispatch(getSwiperData())
+  }, [dispatch])
+
+  console.log(swiper);
+  
   return (
     <div id="review" className="review__section">
       <h2 className="title">{t('header.costumers')}</h2>
@@ -47,21 +33,23 @@ export const SwiperVideo = () => {
           modules={[Pagination]} 
           className="mySwiper"
         >
-          {videoSwiper.map((swip, inx) => (
-            <SwiperSlide key={inx}>
-              <div className="swiper__item row">
-                <div className="swiper__item__video">
-                  <iframe src={swip.link}></iframe>
+          {
+            swiper &&
+            swiper.map((swiper, inx) => (
+              <SwiperSlide key={inx}>
+                <div className="swiper__item row">
+                  <div className="swiper__item__video">
+                    <iframe src={swiper.links}></iframe>
+                  </div>
+                  <div className="swiper__item__description">
+                    <h3>{swiper.title}</h3>
+                    <p dangerouslySetInnerHTML={{ __html: swiper.description }}></p>
+                  </div>
                 </div>
-                <div className="swiper__item__description">
-                  <h3>{swip.title}</h3>
-                  <p>{swip.description}</p>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            ))}
         </Swiper>
-        <div className="custom-pagination"></div> {/* Здесь будет рендериться кастомная пагинация */}
+        <div className="custom-pagination"></div> 
       </div>
     </div>
   )

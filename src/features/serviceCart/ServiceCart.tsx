@@ -1,13 +1,9 @@
 import { FC } from 'react';
 import './serviceCart.scss';
+import { ourServiceData } from '../../types';
 
-interface ServiceProps {
-    id: number;
-    title: string;
-    description: string;
-}
 
-export const ServiceCart: FC<ServiceProps> = ({ id, title, description }) => {
+export const ServiceCart: FC<ourServiceData> = ({ id, title, description }) => {
     return (
         <div className="card">
             <div className="order row">

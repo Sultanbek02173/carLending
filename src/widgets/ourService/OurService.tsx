@@ -1,60 +1,32 @@
 import { ServiceCart } from '../../features';
 import './ourService.scss';
 import arrow from '../../shared/imgs/Vector.png';
-import { Carts } from '../../types';
 import { useTranslation } from 'react-i18next';
-
+import { RootState, useAppDispatch } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getOurServiceData } from '../../app/store/reducer/ourServiceReducer';
 
 
 export const OurService = () => {
   const {t} = useTranslation();
+  const dispatch = useAppDispatch();
 
-  const carts: Carts[] = [
-    {
-      id: 1,
-      title: 'Airport Transfers',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 2,
-      title: 'City Tours',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 3,
-      title: 'Event Transportation Services',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 4,
-      title: 'Group Transfers',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 5,
-      title: 'Private Transfers',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 6,
-      title: 'Corporate Transportation',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-    {
-      id: 7,
-      title: 'Corporate Transportation',
-      description: 'We offer reliable and convenient transfers to and from the airport, ensuring that your journey begins or ends without any hassle.'
-    },
-  ]
+  const ourService = useSelector((state: RootState) => state.ourService.data);
+  
+  useEffect(() => {
+    dispatch(getOurServiceData());
+  }, [dispatch])
+
   return (
     <div id="service" className="service__container">
       <h2 className='title'>{t('header.services')}</h2>
 
       <div className='service__container__carts row'>
         {
-          carts && 
-          carts.map((cart) => (
-            <ServiceCart key={cart.id} id={cart.id} title={cart.title} description={cart.description} />
+          ourService && 
+          ourService.map((cart, index) => (
+            <ServiceCart key={cart.id} id={index + 1} title={cart.title} description={cart.description} />
           ))
         }
 

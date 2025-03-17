@@ -7,7 +7,8 @@
         "Contacts": "Contacts",
         "services": "Our services",
         "Tariffs2": "Tariffs",
-        "costumers": "What our costumers say"
+        "costumers": "What our costumers say",
+        "Send": "Send"
     },
     "banner": {
         "PickUp": "Pick Up",
@@ -16,5 +17,17 @@
         "date": "Pick up date",
         "Phone": "Phone",
         "Order": "Order"
-    }
+    },
+    "modal": {
+        "title": "We’ll Help You Resolve All Your Questions",
+        "description": "If you want to learn more about our services or aren’t sure which rate or route is best for you, just leave a request and we’ll give you a call back.",
+        "nameInp": "Name",
+        "phoneInp": "Phone namber",
+        "Email": "Email",
+        "Info": "Info",
+        "loc": "Bishkek, Toktogulova st. 23/a"
+    },
+    "error": "Fill in all fields",
+    "succes": "Sent successfully"
+
 }
