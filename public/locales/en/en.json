@@ -29,5 +29,15 @@
         "loc": "Bishkek, Toktogulova st. 23/a"
     },
     "error": "Fill in all fields",
-    "succes": "Sent successfully"
+    "succes": "Sent successfully",
+    "footer": {
+        "Home": "Home",
+        "Support": "Support",
+        "Drivers": "Drivers",
+        "Business": "Business Meetings",
+        "Events": "Events",
+        "Video": "Video Reviews",
+        "Text": "Text Reviews",
+        "description": "Your best partner for transportation services"
+    }
 }
