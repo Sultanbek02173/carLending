@@ -14,6 +14,8 @@ export const OurService = () => {
   const dispatch = useAppDispatch();
 
   const ourService = useSelector((state: RootState) => state.ourService.data);
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
 
   const fetchOurServiceData = () => {
     dispatch(getOurServiceData());
@@ -29,7 +31,7 @@ export const OurService = () => {
 
   return (
     <div id="service" className="service__container">
-      <h2 className='title'>{t('header.services')}</h2>
+      <h2 className='title'>{filterHeader?.our_services}</h2>
 
       <div className='service__container__carts row'>
         {

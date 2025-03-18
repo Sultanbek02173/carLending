@@ -1,55 +1,56 @@
-import { FaTelegram, FaTiktok, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import './footer.scss';
 import { CiInstagram } from 'react-icons/ci';
-import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store/store';
 
 export const Footer = () => {
-  const { t } = useTranslation();
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
   return (
     <footer className="main__footer">
       <div className='main__footer__links row'>
         <div className='main__footer__social'>
           <h3>Transfer <sup>24</sup></h3>
-          <p>{t('footer.description')}</p>
+          <p>{filterHeader?.description}</p>
 
           <div className='social row'>
-            <FaTelegram />
-            <FaWhatsapp />
-            <CiInstagram />
-            <FaTiktok />
+            <a href={filterHeader?.telegram} target='_black'><FaTelegram /></a>
+            <a href={filterHeader?.watapp} target='_black'><FaWhatsapp /></a>
+            <a href={filterHeader?.insta} target='_black'><CiInstagram /></a>
           </div>
         </div>
 
         <div className='main__footer__link row'>
           <div>
-            <h3>{t('footer.Home')}</h3>
-            <p>{t('header.about')}</p>
-            <p>{t('header.Services')}</p>
-            <p>{t('header.Tariffs')}</p>
-            <p>{t('header.Reviews')}</p>
+            <h3>{filterHeader?.tariff}</h3>
+            <p>{filterHeader?.about}</p>
+            <p>{filterHeader?.services}</p>
+            <p>{filterHeader?.tariff}</p>
+            <p>{filterHeader?.review}</p>
           </div>
           <div>
-            <h3>{t('header.about')}</h3>
-            <p>{t('footer.Support')}</p>
-            <p>{t('footer.Drivers')}</p>
+            <h3>{filterHeader?.about}</h3>
+            <p>{filterHeader?.support}</p>
+            <p>{filterHeader?.drivers}</p>
           </div>
           <div>
-            <h3>{t('header.Services')}</h3>
-            <p>{t('footer.Support')}</p>
-            <p>{t('footer.Business')}</p>
-            <p>{t('footer.Events')}</p>
+            <h3>{filterHeader?.services}</h3>
+            <p>{filterHeader?.support}</p>
+            <p>{filterHeader?.business}</p>
+            <p>{filterHeader?.event}</p>
           </div>
           <div>
-            <h3>{t('header.Tariffs')}</h3>
+            <h3>{filterHeader?.tariff}</h3>
             <p>Economy</p>
             <p>Comfort</p>
             <p>Premium</p>
             <p>Premium+</p>
           </div>
           <div>
-            <h3>{t('header.Reviews')}</h3>
-            <p>{t('footer.Video')}</p>
-            <p>{t('footer.Text')}</p>
+            <h3>{filterHeader?.review}</h3>
+            <p>{filterHeader?.video}</p>
+            <p>{filterHeader?.text}</p>
           </div>
         </div>
       </div>

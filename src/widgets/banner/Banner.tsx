@@ -10,30 +10,28 @@ import { feedbackState } from '../../types';
 import axiosApi from '../../shared/api/axiosApi';
 import i18n from '../../i18next/i18n';
 
+const feed: feedbackState = {
+  title: '',
+  description: '',
+  tariff: 'Economy',
+  date: '',
+  phone_number: ''
+}
+
 export const Banner = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [isAnimating, setIsAnimating] = useState(false);
   const [selected, setSelected] = useState('Economy');
   
-  const [feedback, setFeedback] = useState<feedbackState>({
-    title: '',
-    description: '',
-    tariff: 'Economy',
-    date: '',
-    phone_number: ''
-  });
+  const [feedback, setFeedback] = useState<feedbackState>(feed);
 
   const bannerData = useSelector((state: RootState) => state.banner.data);
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
   
   const getFeedback = (feedback: feedbackState) => {
-    axiosApi.post('/api/v1/base/feedback/', feedback).then(() => {setFeedback({
-      title: '',
-      description: '',
-      tariff: 'Economy',
-      date: '',
-      phone_number: ''
-    })}).catch((error) => console.log(error))
+    axiosApi.post('/api/v1/base/feedback/', feedback).then(() => {setFeedback(feed)}).catch((error) => console.log(error))
   }
 
   const handlerFeed = () => {
@@ -68,15 +66,15 @@ export const Banner = () => {
 
       <div className='banner__section__order row'>
         <div className='banner__section__order__item'>
-          <p>{t('banner.PickUp')}</p>
-          <input onChange={(e) => { setFeedback({ ...feedback, title: e.target.value }) }} type="text" placeholder='Manas Airpot' />
+          <p>{filterHeader?.pick}</p>
+          <input value={feedback.title} onChange={(e) => { setFeedback({ ...feedback, title: e.target.value }) }} type="text" placeholder='Manas Airpot' />
         </div>
         <div className='banner__section__order__item line'>
-          <p>{t('banner.destination')}</p>
-          <input onChange={(e) => { setFeedback({ ...feedback, description: e.target.value }) }} type="text" placeholder='Oligarkh Hotel' />
+          <p>{filterHeader?.enter}</p>
+          <input value={feedback.description} onChange={(e) => { setFeedback({ ...feedback, description: e.target.value }) }} type="text" placeholder='Oligarkh Hotel' />
         </div>
         <div className='banner__section__order__item line'>
-          <p>{t('banner.Tariff')}</p>
+          <p>{filterHeader?.tariff}</p>
           <div className='select row'>
             <h3 onClick={() => setIsAnimating(!isAnimating)}>{selected}</h3>
 
@@ -115,15 +113,15 @@ export const Banner = () => {
           </div>
         </div>
         <div className='banner__section__order__item line'>
-          <p>{t('banner.date')}</p>
-          <input onChange={(e) => { setFeedback({ ...feedback, date: e.target.value }) }} type="datetime-local" placeholder='11/03/2025' className='date' />
+          <p>{filterHeader?.pick_up_date}</p>
+          <input value={feedback.date} onChange={(e) => { setFeedback({ ...feedback, date: e.target.value }) }} type="datetime-local" placeholder='11/03/2025' className='date' />
         </div>
         <div className='banner__section__order__item line'>
-          <p>{t('banner.Phone')}</p>
-          <input onChange={(e) => { setFeedback({ ...feedback, phone_number: e.target.value }) }} type="text" placeholder='0990-090-086' />
+          <p>{filterHeader?.phone}</p>
+          <input value={feedback.phone_number} onChange={(e) => { setFeedback({ ...feedback, phone_number: e.target.value }) }} type="text" placeholder='0990-090-086' />
         </div>
         <div className='banner__section__order__item line'>
-          <button onClick={handlerFeed} className='order_btn'>{t('banner.Order')}</button>
+          <button onClick={handlerFeed} className='order_btn'>{filterHeader?.order}</button>
         </div>
       </div>
     </div>

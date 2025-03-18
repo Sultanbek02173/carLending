@@ -49,5 +49,6 @@ export const counterSlice = createSlice({
 });
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
+// export const useSearch = () =>
+//   useAppSelector((state: RootState) => state.search);
 export default counterSlice.reducer;

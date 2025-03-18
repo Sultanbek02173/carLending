@@ -23,8 +23,8 @@ export const bannerSlice = createSlice({
             .addCase(getBannerData.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(getBannerData.fulfilled, (state, action) => {                
-                state.data = action.payload;
+            .addCase(getBannerData.fulfilled, (state, {payload}) => {                
+                state.data = payload;
                 state.status = 'succeeded';
             })
             .addCase(getBannerData.rejected, (state, action) => {

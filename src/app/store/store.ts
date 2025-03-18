@@ -7,6 +7,7 @@ import transferReducer from './slices/transferSlice';
 import ourServiceReducer from './slices/ourServiceSlice';
 import tariffsReducer from './slices/tariffsSlice';
 import swiperReducer from './slices/swiperSlice';
+import settingReducer from './slices/settingSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     ourService: ourServiceReducer,
     tariffs: tariffsReducer,
     swiper: swiperReducer,
+    setting: settingReducer,
   },
 });
 

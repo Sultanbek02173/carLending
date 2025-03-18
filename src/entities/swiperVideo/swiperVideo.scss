@@ -30,19 +30,16 @@
 
             &__video{
                 width: 60%;
-
+                div{
+                    width: 95%!important;
+                    height: 100%!important;
+                    margin-left: 15px;
+                }
                 @include md{
                     width: 100%;
                 }
 
-                iframe{
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-top-left-radius: 36px;
-                    border-bottom-left-radius: 36px;
-                    border: none;
-                }
+              
             }
 
             &__description{

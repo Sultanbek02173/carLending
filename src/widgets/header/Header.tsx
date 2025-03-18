@@ -7,6 +7,9 @@ import { HiMenu, HiX } from 'react-icons/hi';
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { RootState, useAppDispatch } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { getSettingData } from '../../app/store/reducer/settingReducer';
 
 interface HeaderProps {
   isOpen: boolean;
@@ -14,11 +17,14 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
+  const dispatch = useAppDispatch();
   const { t, i18n } = useTranslation();
   const [isAnimating, setIsAnimating] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
 
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
   const handlerModal = () => {
     setIsOpen(!isOpen);
   };
@@ -33,17 +39,24 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
 
   const changLang = (lang: string) => {
     i18n.changeLanguage(lang);
+  }  
+
+  const fetchHeader = () => {
+    dispatch(getSettingData());
   }
 
   useEffect(() => {
+    fetchHeader()
     const handleLanguageChange = (lng: string) => {
       setCurrentLanguage(lng);
     };
 
     i18n.on('languageChanged', handleLanguageChange);
+    i18n.on('languageChanged', fetchHeader);
 
     return () => {
       i18n.off('languageChanged', handleLanguageChange);
+      i18n.off('languageChanged', fetchHeader);
     };
   }, [i18n]);
 
@@ -55,10 +68,10 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
         </div>
 
         <ul className="main__header__links row">
-          <a href="#about"><li>{t('header.about')}</li></a>
-          <a href="#service"><li>{t('header.Services')}</li></a>
-          <a href="#tariff"><li>{t('header.Tariffs')}</li></a>
-          <a href="#review"><li>{t('header.Reviews')}</li></a>
+          <a href="#about"><li>{filterHeader?.about}</li></a>
+          <a href="#service"><li>{filterHeader?.services}</li></a>
+          <a href="#tariff"><li>{filterHeader?.tariff}</li></a>
+          <a href="#review"><li>{filterHeader?.review}</li></a>
         </ul>
         
 
@@ -89,7 +102,7 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
         </div>
 
         <button onClick={handlerModal} className="main__header__contacts row">
-          <p>{t('header.Contacts')}</p>
+          <p>{filterHeader?.contact}</p>
           <FaPhoneAlt size={15} />
         </button>
 
@@ -113,10 +126,10 @@ export const Header: FC<HeaderProps> = ({ isOpen, setIsOpen }) => {
               </div>
 
               <ul className="mobile-menu__links">
-                <a href="#about" onClick={toggleMenu}><li>{t('header.about')}</li></a>
-                <a href="#service" onClick={toggleMenu}><li>{t('header.Services')}</li></a>
-                <a href="#tariff" onClick={toggleMenu}><li>{t('header.Tariffs')}</li></a>
-                <a href="#review" onClick={toggleMenu}><li>{t('header.Reviews')}</li></a>
+                <a href="#about" onClick={toggleMenu}><li>{filterHeader?.about}</li></a>
+                <a href="#service" onClick={toggleMenu}><li>{filterHeader?.services}</li></a>
+                <a href="#tariff" onClick={toggleMenu}><li>{filterHeader?.tariff}</li></a>
+                <a href="#review" onClick={toggleMenu}><li>{filterHeader?.review}</li></a>
               </ul>
 
               <button onClick={() => {

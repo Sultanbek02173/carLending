@@ -4,18 +4,19 @@ import './swiperVideo.scss';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
-import { useTranslation } from 'react-i18next';
 import { RootState, useAppDispatch } from '../../app/store/store';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getSwiperData } from '../../app/store/reducer/swiperReducer';
 import i18n from '../../i18next/i18n';
+import ReactPlayer from 'react-player'
 
 export const SwiperVideo = () => {
-  const {t} = useTranslation();
   const dispatch = useAppDispatch();
 
   const swiper = useSelector((state: RootState) => state.swiper.data);
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
 
   const fetchSwiperDat = () => {
     dispatch(getSwiperData());
@@ -31,7 +32,7 @@ export const SwiperVideo = () => {
   
   return (
     <div id="review" className="review__section">
-      <h2 className="title">{t('header.costumers')}</h2>
+      <h2 className="title">{filterHeader?.sviper}</h2>
 
       <div className="review__section__swiper ">
         <Swiper
@@ -46,7 +47,7 @@ export const SwiperVideo = () => {
               <SwiperSlide key={inx}>
                 <div className="swiper__item row">
                   <div className="swiper__item__video">
-                    <iframe src={swiper.links}></iframe>
+                    <ReactPlayer url={swiper.links}  />
                   </div>
                   <div className="swiper__item__description">
                     <h3>{swiper.title}</h3>

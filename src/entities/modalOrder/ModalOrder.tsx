@@ -1,13 +1,16 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+import { ChangeEvent, Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import {motion} from 'framer-motion';
 import './modalOrder.scss';
 import { MdEmail, MdLocationPin } from 'react-icons/md';
-import { FaInstagram, FaPhoneAlt, FaTelegram, FaWhatsapp } from 'react-icons/fa';
+import { FaPhoneAlt, FaTelegram, FaWhatsapp } from 'react-icons/fa';
 import { GoClockFill } from 'react-icons/go';
 import { IoMdClose } from 'react-icons/io';
 import { contactState } from '../../types';
 import axiosApi from '../../shared/api/axiosApi';
 import { useTranslation } from 'react-i18next';
+import { RootState } from '../../app/store/store';
+import { useSelector } from 'react-redux';
+import { CiInstagram } from 'react-icons/ci';
 
 interface ModalOrderProps {
   isOpen: boolean,
@@ -16,6 +19,8 @@ interface ModalOrderProps {
 
 export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
   const { t } = useTranslation();
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
   const [contact, setContact] = useState<contactState>({
     name: '',
     phone_number: '',
@@ -38,7 +43,11 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
     }
 
     getContact(contact);
-    return alert(t('succes'));
+    return alert(t('success'));
+  }
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+    setContact((prev) => ({...prev, [name]: value}))
   }
 
   useEffect(() => {
@@ -71,7 +80,7 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
           </div>
           <div className='flex__input row'>
             <div className='input__container input'>
-              <input value={contact.phone_number} type="text" placeholder={t('modal.phoneInp')} onChange={(e) => { setContact({ ...contact, phone_number: e.target.value }) }} />
+              <input name='phone_number' value={contact.phone_number} type="text" placeholder={t('modal.phoneInp')} onChange={onChange} />
             </div>
             <div className='input__container input'>
               <input value={contact.email} type="email" placeholder={t('modal.Email')} onChange={(e) => { setContact({ ...contact, email: e.target.value }) }} />
@@ -81,10 +90,10 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
         </div>
 
         <div className='modal__container__item__social'>
-          <h2>{t('modal.Info')}</h2>
+          <h2>{filterHeader.info}</h2>
           <div className='modal__container__item__social__item row'>
             <MdLocationPin />
-            <p>{t('modal.loc')}</p>
+            <p>{filterHeader.location}</p>
           </div>
           <div className='modal__container__item__social__item row'>
             <FaPhoneAlt />
@@ -99,10 +108,10 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
             <p>09:00 - 20:00</p>
           </div>
           <div className='modal__container__item__social__links row'>
-            <FaTelegram />
-            <FaWhatsapp />
-            <FaInstagram />
-            <FaPhoneAlt />
+            <a href={filterHeader?.telegram} target='_black'><FaTelegram /></a>
+            <a href={filterHeader?.watapp} target='_black'><FaWhatsapp /></a>
+            <a href={filterHeader?.insta} target='_black'><CiInstagram /></a>
+            <a href={`tel:${filterHeader?.phone_number_2}`} target='_black'><FaPhoneAlt /></a>
           </div>
         </div>
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { CarCarts } from '../../features';
 import './tariffs.scss';
-import { useTranslation } from 'react-i18next';
 import { RootState, useAppDispatch } from '../../app/store/store';
 import { useSelector } from 'react-redux';
 import { getTariffsData } from '../../app/store/reducer/tariffsReducer';
@@ -9,11 +8,12 @@ import i18n from '../../i18next/i18n';
 
 
 export const Tariffs = () => {
-  const {t} = useTranslation();
   const dispatch = useAppDispatch();
   const [active, setActive] = useState<string>('Economy');
 
   const tariffs = useSelector((state: RootState) => state.tariffs.data);
+  const header = useSelector((state: RootState) => state.setting.data);
+  const filterHeader = header[0];
 
   const fetchTariffsData = () => {
     dispatch(getTariffsData());
@@ -30,7 +30,7 @@ export const Tariffs = () => {
   return (
     <div id="tariff" className="tariff__section">
       <div className='tariff__section__navigate row'>
-        <h2 className="title">{t('header.Tariffs2')}</h2>
+        <h2 className="title">{filterHeader?.tariff}</h2>
 
         <div className="tariff__section__navigate__catalog row">
           <p onClick={() => setActive('Economy')} className={active === 'Economy' ? 'active' : ''}>Economy</p>
