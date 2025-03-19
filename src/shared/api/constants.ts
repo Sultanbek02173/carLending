@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://192.168.31.172:8000';
+export const BASE_URL = 'https://transfer24.kg';

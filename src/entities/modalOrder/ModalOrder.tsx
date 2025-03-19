@@ -73,20 +73,20 @@ export const ModalOrder: FC<ModalOrderProps> = ({isOpen, setIsOpen}) => {
         className="modal__container__item row"
       >
         <div className='modal__container__item__form'>
-          <h2>{t('modal.title')}</h2>
-          <p>{t('modal.description')}</p>
+          <h2>{filterHeader?.title}</h2>
+          <p>{filterHeader?.description}</p>
           <div className='input'>
-            <input value={contact.name} type="text" placeholder={t('modal.nameInp')} onChange={(e) => { setContact({ ...contact, name: e.target.value }) }} />
+            <input value={contact.name} type="text" placeholder={filterHeader?.name} onChange={(e) => { setContact({ ...contact, name: e.target.value }) }} />
           </div>
           <div className='flex__input row'>
             <div className='input__container input'>
-              <input name='phone_number' value={contact.phone_number} type="text" placeholder={t('modal.phoneInp')} onChange={onChange} />
+              <input name='phone_number' value={contact.phone_number} type="text" placeholder={filterHeader?.number} onChange={onChange} />
             </div>
             <div className='input__container input'>
-              <input value={contact.email} type="email" placeholder={t('modal.Email')} onChange={(e) => { setContact({ ...contact, email: e.target.value }) }} />
+              <input value={contact.email} type="email" placeholder={filterHeader?.email} onChange={(e) => { setContact({ ...contact, email: e.target.value }) }} />
             </div>
           </div>
-          <button onClick={handlerContact} className='modal__container__item__form_button'>{t('header.Send')}</button>
+          <button onClick={handlerContact} className='modal__container__item__form_button'>{filterHeader?.send}</button>
         </div>
 
         <div className='modal__container__item__social'>
