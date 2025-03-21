@@ -87,4 +87,5 @@ export type SettingData = {
     telegram: string,
     insta: string,
     phone_number_2: string,
+    banner_link: string,
 }

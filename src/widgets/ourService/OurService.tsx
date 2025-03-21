@@ -40,11 +40,12 @@ export const OurService = () => {
             <ServiceCart key={cart.id} id={index + 1} title={cart.title} description={cart.description} />
           ))
         }
-
-        <div className='service__container__link'>
-          <h2>{t('banner.link')}</h2>
-          <img src={arrow} alt="" />
-        </div>
+        <a href={filterHeader?.banner_link} target='_blank'>
+          <div className='service__container__link'>
+            <h2>{t('banner.link')}</h2>
+            <img src={arrow} alt="" />
+          </div>
+        </a>
       </div>
       
     </div>
